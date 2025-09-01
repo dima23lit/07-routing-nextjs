@@ -1,6 +1,6 @@
 'use client'
 
-import css from "@/app/notes/NotesPage.module.css"
+import css from "@/app/notes/filter/[...slug]/NotesPage.module.css"
 import { fetchNotes } from "@/lib/api"
 import { useQuery, keepPreviousData  } from '@tanstack/react-query'
 import NoteList from "@/components/NoteList/NoteList"
@@ -10,9 +10,12 @@ import NoteForm from "@/components/NoteForm/NoteForm"
 import Modal from "@/components/Modal/Modal"
 import SearchBox from "@/components/SearchBox/SearchBox"
 import { useDebouncedCallback } from 'use-debounce';
+import { useParams } from "next/navigation"
 
 
 export default function NotesPage() {
+    const { slug } = useParams<{ slug: string[] }>();
+    const tag = slug[0];
 
     const [currentPage, setCurrentPage] = useState(1);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,8 +29,8 @@ export default function NotesPage() {
     }, 300);
 
     const { data } = useQuery({
-        queryKey: ['Note', { currentPage: currentPage, searchQuery: searchQuery }],
-        queryFn: () => fetchNotes(currentPage, 12, searchQuery),
+        queryKey: ['Note', { currentPage: currentPage, searchQuery: searchQuery , tag}],
+        queryFn: () => fetchNotes(currentPage, 12, searchQuery, tag),
         placeholderData: keepPreviousData,
         refetchOnMount: false
     })
