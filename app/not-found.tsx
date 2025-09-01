@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import css from '@/app/not-found.module.css'
 
