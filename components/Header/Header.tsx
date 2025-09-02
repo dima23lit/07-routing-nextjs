@@ -1,11 +1,9 @@
 import css from "@/components/Header/Header.module.css"
 import Link from 'next/link'
 import TagsMenu from "../TagsMenu/TagsMenu"
-import { fetchNotes } from "@/lib/api"
 
 
 export default async function Header() {
-    const {notes} = await fetchNotes();
 
     return (
         <header className={css.header}>
@@ -18,7 +16,7 @@ export default async function Header() {
                         <Link className={css.navigationLink} href="/">Home</Link>
                     </li>
                     <li className={css.navigationItem}>
-                        <TagsMenu notes={notes} />
+                        <TagsMenu/>
                     </li>
                 </ul>
             </nav>
