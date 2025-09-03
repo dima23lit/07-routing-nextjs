@@ -7,7 +7,7 @@ import css from "@/app/notes/[id]/NoteDetails.module.css"
 import Modal from "@/components/Modal/Modal";
 import { useRouter } from "next/navigation";
 
-type Props = object;
+type Props = {};
 
 export default function NotePreview({}:Props) {
   const router = useRouter();
@@ -43,8 +43,11 @@ export default function NotePreview({}:Props) {
               <h2>{data?.title}</h2>
               <span className={css.tag}>{data.tag}</span> 
             </div>
-            <p className={css.content}>{data?.content}</p>
-            <p className={css.date}>{data?.createdAt}</p>
+          <p className={css.content}>{data?.content}</p>
+          <p className={css.date}>{data?.createdAt}</p>
+          <button onClick={closeModal} className={css.backBtn}>
+          Close
+        </button>
           </div>
         </div>
         </Modal>
