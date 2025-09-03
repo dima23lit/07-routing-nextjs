@@ -9,7 +9,7 @@ export default async function SidebarNotes() {
                     {TAGS.map((tag) => (
                         <li className={css.menuItem} key={tag}>
                             <Link
-                                href={tag === "All" ? "/notes" : `/notes/filter/${tag}`}
+                                href={tag === "All" ? "/notes/filter/All" : `/notes/filter/${tag}`}
                                 className={css.menuLink}>
                                 {tag}
                             </Link>

@@ -7,7 +7,9 @@ import css from "@/app/notes/[id]/NoteDetails.module.css"
 import Modal from "@/components/Modal/Modal";
 import { useRouter } from "next/navigation";
 
-export default function NotePreview() {
+type Props = object;
+
+export default function NotePreview({}:Props) {
   const router = useRouter();
   const params = useParams();
   const idParam = params?.id;
@@ -19,18 +21,22 @@ export default function NotePreview() {
   const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
   const { data, isLoading, isError } = useQuery({
-      queryKey: ['note', id],
-      queryFn: () => fetchNoteById(id as string),
+    queryKey: ['note', id],
+    queryFn: () => fetchNoteById(id as string),
+    enabled: Boolean(id),
     refetchOnMount: false,
   });
+
+  if (!id) {
+    return <p>Note ID is missing.</p>;
+  }
 
   if (isLoading) return <p>Loading, please wait...</p>;
   if (isError) return <p>Something went wrong.</p>;
 
-   if (!data) return null;
+  if (!data) return null;
 
     return (
-      <div>
         <Modal onClose={closeModal}><div className={css.container}>
           <div className={css.item}>
             <div className={css.header}>
@@ -42,6 +48,5 @@ export default function NotePreview() {
           </div>
         </div>
         </Modal>
-      </div>
   );
 }

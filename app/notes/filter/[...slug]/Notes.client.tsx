@@ -10,12 +10,12 @@ import NoteForm from "@/components/NoteForm/NoteForm"
 import Modal from "@/components/Modal/Modal"
 import SearchBox from "@/components/SearchBox/SearchBox"
 import { useDebouncedCallback } from 'use-debounce';
-import { useParams } from "next/navigation"
 
+type Props = {
+  tag: string;
+};
 
-export default function NotesPage() {
-    const { slug } = useParams<{ slug: string[] }>();
-    const tag = slug[0];
+export default function NotesPage({ tag }: Props) {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [isModalOpen, setIsModalOpen] = useState(false);

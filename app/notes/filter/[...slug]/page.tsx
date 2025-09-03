@@ -25,9 +25,9 @@ export default async function Notes({ params }: Props) {
 
     return (
         <div>
-            <HydrationBoundary state={dehydrate(queryClient)}>
-                <NotesPage />
-             </HydrationBoundary>
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <NotesPage tag={tag} />
+        </HydrationBoundary>
         </div>
     )
 }
