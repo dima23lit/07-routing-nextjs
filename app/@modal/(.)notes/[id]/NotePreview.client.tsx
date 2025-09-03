@@ -7,7 +7,9 @@ import css from "@/app/notes/[id]/NoteDetails.module.css"
 import Modal from "@/components/Modal/Modal";
 import { useRouter } from "next/navigation";
 
-type Props = {};
+type Props = {
+  id?: string;
+};
 
 export default function NotePreview({}:Props) {
   const router = useRouter();
