@@ -27,7 +27,7 @@ export async function fetchNotes(
     search: searchTerm,
   };
 
-  if (tag) {
+  if (tag !== 'All') {
     params.tag = tag;
   }
 
