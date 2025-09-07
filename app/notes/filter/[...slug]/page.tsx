@@ -13,7 +13,8 @@ type Props = {
 
 export default async function Notes({ params }: Props) {
 
-    const { slug } = await params;
+  const { slug } = await params;
+  // const [params1, params2, params3] = slug; 
     const tag = slug?.[0];
 
     const queryClient = new QueryClient();
@@ -31,3 +32,12 @@ export default async function Notes({ params }: Props) {
         </div>
     )
 }
+
+// notes/filter/work/service
+
+// const params = {
+// slug: [work, service]
+// }
+
+// [work, service]
+// [afsasfasf, afsasfafs]

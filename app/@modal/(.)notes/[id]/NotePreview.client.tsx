@@ -14,6 +14,7 @@ type Props = {
 export default function NotePreview({}:Props) {
   const router = useRouter();
   const params = useParams();
+  console.log(params.id);
   const idParam = params?.id;
 
   const closeModal = () => {

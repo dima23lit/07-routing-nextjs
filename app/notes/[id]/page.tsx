@@ -8,24 +8,24 @@ import {
 } from "@tanstack/react-query";
 
 type Props = {
-  params: Promise<{ tag: string }>;
+  params: Promise<{ id: string }>;
 };
 
 export const dynamic = "force-dynamic";
 
 export default async function NotesDetailsPage({ params }: Props) {
-    const { tag } = await params;
+    const { id } = await params;
     const queryClient = new QueryClient();
 
     await queryClient.prefetchQuery({
-        queryKey: ['note', { tag: tag }],
-          queryFn: () => fetchNoteById(tag),
+        queryKey: ['note', { tag: id }],
+          queryFn: () => fetchNoteById(id),
       });
 
     return (
         <div>
         <HydrationBoundary state={dehydrate(queryClient)}>
-          <NoteDetails tag={tag} />
+          <NoteDetails tag={id} />
              </HydrationBoundary>
         </div>
     )
